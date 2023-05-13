@@ -1,0 +1,116 @@
+// 1 уровень сложности:
+//  Task 1. Оценить временную сложность следующий алгоритмов:
+// а)
+// void test1(int n)
+//  {
+//     if (n==1) 
+//        return;
+//     for (int i=1; i<=n; i++)
+//         for (int j=1; j<=n; j++)
+//             System.out.println("");
+//             break;
+// }
+// б)
+// void test2(int n)
+// {
+//     int a = 0;
+// for (i = 0; i < n; i++)
+//     for (j = n; j > i; j--)
+//         a = a + i + j;    
+// }
+// в)
+// void test3(int n)
+// {
+//     int i, j, a = 0;
+// for (i = n/2; i <=n; i++)
+//     for (j = 2; j <=n; j=j2)
+//         a=a+n/2;    
+// }
+// г) (*)
+// void test4(int n)
+//  {
+//     int a = 0, i = n;
+// while (i > 0) {
+//     a += i;
+//     i /= 2;
+// }
+// }
+
+// Решение ==============================
+
+// Внешний цикл выполняется n раз, а внутренний также выполняется n раз для каждого значения внешнего цикла.
+// Таким образом, временная сложность данного алгоритма будет O(n^2).
+
+// б)
+
+// Внешний цикл выполняется n раз, а внутренний цикл выполняется n-i раз для каждого значения i внешнего цикла.
+// Таким образом, временная сложность данного алгоритма будет O(n^2).
+
+// в)
+
+// Внешний цикл выполняется n/2 раз, а внутренний цикл выполняется log2(n) раз для каждого значения внешнего цикла.
+// Таким образом, временная сложность данного алгоритма будет O(n log n).
+
+// г)
+
+// Цикл выполняется log2(n) раз, так как каждый раз i делится на 2.
+// Таким образом, временная сложность данного алгоритма будет O(log n).
+
+// Task 3. (*)
+
+// Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string "".
+// Напишите функцию, которая находит самую длинную строку общего префикса среди массива строк. Если общего префикса нет, вернуть пустую строку "".
+
+// Example 1:
+// Input: strs = ["flower","flow","flight"]
+// Output: "fl"
+
+
+// Example 2:
+// Input: strs = ["dog","racecar","car"]
+// Output: ""
+// Explanation: There is no common prefix among the input strings.
+// Объяснение: Среди входных строк нет общего префикса.
+// =====
+
+// Task 3. (*)
+
+// Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string "".
+// Напишите функцию, которая находит самую длинную строку общего префикса среди массива строк. Если общего префикса нет, вернуть пустую строку "".
+
+// Example 1:
+// Input: strs = ["flower","flow","flight"]
+// Output: "fl"
+
+
+// Example 2:
+// Input: strs = ["dog","racecar","car"]
+// Output: ""
+// Explanation: There is no common prefix among the input strings.
+// Объяснение: Среди входных строк нет общего префикса.
+// =====
+
+
+// Решение:
+
+// Для решения этой задачи можно использовать алгоритм "метод горизонтального сканирования". 
+// Сравниваю символы всех строк на одной и той же позиции, начиная с первого символа, нахожу место, где символы не совпадают. 
+// Затем верну подстроку, которая является общим префиксом всех строк до этого места.
+
+// Вот решение на JavaScript:
+
+function longestCommonPrefix(strs) {
+    if (strs.length === 0) return "";
+    let prefix = strs[0];
+    for (let i = 1; i < strs.length; i++) {
+      while (strs[i].indexOf(prefix) !== 0) {
+        prefix = prefix.substring(0, prefix.length - 1);
+        if (prefix === "") return "";
+      }
+    }
+    return prefix;
+  }
+  // Эта функция принимает массив строк strs и возвращает общий префикс всех строк в этом массиве. Если общего префикса нет, функция возвращает пустую строку.
+  
+  // Например, для массива ["flower","flow","flight"] функция вернет "fl", а для массива ["dog","racecar","car"] вернет "".
+  
